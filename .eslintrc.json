@@ -7,7 +7,7 @@
   "extends": [
     "plugin:react/recommended",
     "airbnb",
-    "prettier/@typescript-eslint",
+    "prettier",
     "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
@@ -19,5 +19,16 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint"],
-  "rules": {}
+  "rules": {},
+  "overrides": [
+    {
+      "files": ["**/*.tsx"],
+      "rules": {
+        "no-use-before-define": "off",
+        "react/jsx-filename-extension": "off",
+        "import/extensions": "off",
+        "import/no-unresolved": "off"
+      }
+    }
+  ]
 }
