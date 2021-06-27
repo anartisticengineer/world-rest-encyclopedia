@@ -70,18 +70,20 @@ function App() {
           />
         ))}
       </div>
-      <CountryInfo
-        countryName={result.countryName}
-        alpha3Code={result.alpha3Code}
-        capital={result.capital}
-        population={result.population}
-        area={result.area}
-        alternateNames={result.alternateNames}
-        region={result.region}
-        subRegion={result.subRegion}
-        url={result.url}
-        description={result.description}
-      />
+      {result.countryName ? (
+        <CountryInfo
+          countryName={result.countryName}
+          alpha3Code={result.alpha3Code}
+          capital={result.capital}
+          population={result.population}
+          area={result.area}
+          alternateNames={result.alternateNames}
+          region={result.region}
+          subRegion={result.subRegion}
+          url={result.url}
+          description={result.description}
+        />
+      ) : null}
     </main>
   );
 }
