@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
+import shortid from 'shortid';
 import SearchBar from './components/SearchBar';
 import SearchResult from './components/SearchResult';
 import CountryInfo from './components/CountryInfo';
+import Loading from './components/Loading';
 import { getCountriesByTerm, getCountryByAlpha3Code } from './scripts/api';
 import { Description } from './types';
 import formatResults from './scripts/utility';
@@ -21,10 +22,10 @@ function App() {
     description: '',
   };
 
-  // Search functionality
+  // States
   const [search, updateSearch] = useState({ term: '', results: [] });
   const [result, updateResult] = useState(initialResult);
-  // Selection
+  const [resultIsLoading, updateResultIsLoading] = useState(false);
 
   useEffect(() => {
     if (search.term.length > 2) {
@@ -39,8 +40,10 @@ function App() {
   };
 
   const handleClickedResult = (code: String) => {
+    updateResultIsLoading(true);
     getCountryByAlpha3Code(code)
       .then((country) => {
+        updateResultIsLoading(false);
         updateResult({
           countryName: country.name,
           alpha3Code: country.alpha3Code,
@@ -61,15 +64,17 @@ function App() {
     <main>
       <h1>World Encyclopedia</h1>
       <SearchBar onChangeFcn={handleSearchChange} />
-      <div>
+      <ul>
         {formatResults(search.results).map(({ countryName, alpha3Code }) => (
-          <SearchResult
-            countryName={countryName}
-            alpha3Code={alpha3Code}
-            fcn={() => handleClickedResult(alpha3Code)}
-          />
+          <li key={shortid.generate()}>
+            <SearchResult
+              countryName={countryName}
+              alpha3Code={alpha3Code}
+              fcn={() => handleClickedResult(alpha3Code)}
+            />
+          </li>
         ))}
-      </div>
+      </ul>
       {result.countryName ? (
         <CountryInfo
           countryName={result.countryName}
@@ -84,6 +89,7 @@ function App() {
           description={result.description}
         />
       ) : null}
+      {resultIsLoading ? <Loading /> : null}
     </main>
   );
 }

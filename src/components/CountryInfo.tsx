@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import shortid from 'shortid';
 import { Description } from '../types';
 
 const CountryInfo: FunctionComponent<Description> = ({
@@ -32,7 +33,7 @@ const CountryInfo: FunctionComponent<Description> = ({
       <aside>
         <ul>
           {alternateNames?.map((item) => (
-            <li>{item}</li>
+            <li key={shortid.generate()}>{item}</li>
           ))}
         </ul>
       </aside>
