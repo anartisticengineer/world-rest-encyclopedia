@@ -8,6 +8,8 @@ import { getCountriesByTerm, getCountryByAlpha3Code } from './scripts/api';
 import { Description } from './types';
 import formatResults from './scripts/utility';
 
+import './styles/index.scss';
+
 function App() {
   const initialResult: Description = {
     countryName: '',
