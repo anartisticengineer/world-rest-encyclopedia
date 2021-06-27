@@ -4,8 +4,8 @@ interface Result {
 }
 
 interface Flag {
-  url: String;
-  description: String;
+  url: string;
+  description: string;
 }
 
 interface BasicDescription {
