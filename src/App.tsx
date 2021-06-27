@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 import SearchBar from './components/SearchBar';
-import SearchResultContext from './components/SearchResultContext';
+import SearchResult from './components/SearchResult';
+import CountryInfo from './components/CountryInfo';
+import { getCountriesByTerm, getCountryByAlpha3Code } from './scripts/api';
 import { Description } from './types';
+import formatResults from './scripts/utility';
 
 function App() {
   const initialResult: Description = {
@@ -18,25 +21,58 @@ function App() {
     description: '',
   };
 
-  useEffect(() => {
-    if (initialResult.countryName) {
-      console.log('Country changed');
-    }
-  }, [initialResult.countryName]);
-
+  // Search functionality
   const [search, updateSearch] = useState({ term: '', results: [] });
+  const [result, updateResult] = useState(initialResult);
+  // Selection
+
+  useEffect(() => {
+    if (search.term.length > 2) {
+      getCountriesByTerm(search.term)
+        .then((data) => updateSearch({ ...search, results: data }))
+        .catch((err) => console.error(err));
+    }
+  }, [search.term]);
 
   const handleSearchChange = (event: any) => {
     updateSearch({ ...search, term: event.target.value });
   };
 
+  const handleClickedResult = (code: String) => {
+    getCountryByAlpha3Code(code)
+      .then((country) => {
+        updateResult({
+          countryName: country.name,
+          alpha3Code: country.alpha3Code,
+          capital: country.capital,
+          population: country.population,
+          area: country.area,
+          alternateNames: country.altSpellings,
+          region: country.region,
+          subRegion: country.subRegion,
+          url: country.flag,
+          description: `Flag of ${country.name}`,
+        });
+        console.log(result);
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
-    <SearchResultContext.Provider value={initialResult}>
-      <main>
-        <h1>World Encyclopedia</h1>
-        <SearchBar onChangeFcn={handleSearchChange} />
-      </main>
-    </SearchResultContext.Provider>
+    <main>
+      <h1>World Encyclopedia</h1>
+      <SearchBar onChangeFcn={handleSearchChange} />
+      <div>
+        {formatResults(search.results).map(({ countryName, alpha3Code }) => (
+          <SearchResult
+            countryName={countryName}
+            alpha3Code={alpha3Code}
+            fcn={() => handleClickedResult(alpha3Code)}
+          />
+        ))}
+      </div>
+      <CountryInfo />
+    </main>
   );
 }
 

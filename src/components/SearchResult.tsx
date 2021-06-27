@@ -1,21 +1,14 @@
-import React, { FunctionComponent, useContext } from 'react';
+import React, { FunctionComponent } from 'react';
 
-import { SearchResultProps } from '../types';
-import SearchResultContext from './SearchResultContext';
+import { OnClick, SearchResultProps } from '../types';
 
-const SearchResult: FunctionComponent<SearchResultProps> = ({
+const SearchResult: FunctionComponent<SearchResultProps & OnClick> = ({
   countryName,
   alpha3Code,
+  fcn,
 }) => {
-  const value = useContext(SearchResultContext);
-
-  const handleClick = () => {
-    value.countryName = countryName;
-    value.alpha3Code = alpha3Code;
-  };
-
   return (
-    <button type="button" onClick={handleClick}>
+    <button type="button" onClick={fcn}>
       <span>{countryName} - </span>
       <span>{alpha3Code}</span>
     </button>
