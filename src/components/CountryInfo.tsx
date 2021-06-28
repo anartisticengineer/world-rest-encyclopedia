@@ -15,22 +15,22 @@ const CountryInfo: FunctionComponent<Description> = ({
   description,
 }) => {
   return (
-    <section>
-      <h2>{`${countryName} (${alpha3Code})`}</h2>
-      <figure>
+    <section className="countryinfo">
+      <h2 className="countryinfo__title">{`${countryName} (${alpha3Code})`}</h2>
+      <figure className="countryinfo__figure">
         <img src={url} alt={description} />
         <figcaption>{description}</figcaption>
       </figure>
-      <aside>
+      <aside className="countryinfo__basic">
         <div>{`Capital: ${capital}`}</div>
         <div>{`Population: ${population}`}</div>
         <div>{`Area: ${area}`}</div>
       </aside>
-      <aside>
+      <aside className="countryinfo__region">
         <div>{`Region: ${region}`}</div>
         <div>{`Subregion: ${subRegion}`}</div>
       </aside>
-      <aside>
+      <aside className="countryinfo__altnames">
         <ul>
           {alternateNames?.map((item) => (
             <li key={shortid.generate()}>{item}</li>

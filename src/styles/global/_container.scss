@@ -1,0 +1,24 @@
+@use '../global/colors' as *;
+@use '../global/fonts' as *;
+
+.container {
+  height: 100vh;
+  overflow: clip scroll;
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border-bottom: 1px solid $jet;
+    background-color: $eerie-black;
+  }
+  h1 {
+    @include padauk(3rem);
+    color: $gainsboro;
+    text-align: center;
+  }
+  ul {
+    display: flex;
+    flex-basis: auto;
+    list-style: none;
+  }
+}

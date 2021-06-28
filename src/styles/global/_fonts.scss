@@ -1,0 +1,9 @@
+@mixin opensans($size: 1rem) {
+  font-family: 'Open Sans', sans-serif;
+  font-size: $size;
+}
+
+@mixin padauk($size: 1rem) {
+  font-family: 'Padauk', sans-serif;
+  font-size: $size;
+}

@@ -1,0 +1,58 @@
+@use '../global/colors' as *;
+@use '../global/fonts' as *;
+
+@mixin infostyling($areaname) {
+  grid-area: $areaname;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: $gainsboro;
+  * {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@function checkergrid($lightened: false) {
+  @if $lightened {
+    @return lighten($jet, 10%);
+  } @else {
+    @return lighten($jet, 5%);
+  }
+}
+
+.countryinfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: 'title title' 'flag info1' 'info2 info3';
+  height: 100%;
+  &__title {
+    grid-area: title;
+    @include padauk(2.5rem);
+    text-align: center;
+    background-color: $jet;
+    color: $gainsboro;
+    margin: 0;
+  }
+  &__figure {
+    @include infostyling(flag);
+    background-color: checkergrid();
+    margin: 0;
+    padding: 2rem;
+  }
+  &__basic {
+    @include infostyling(info1);
+    background-color: checkergrid(true);
+    font-size: 2rem;
+  }
+  &__region {
+    @include infostyling(info2);
+    background-color: checkergrid(true);
+  }
+  &__altnames {
+    @include infostyling(info3);
+    background-color: checkergrid();
+  }
+}

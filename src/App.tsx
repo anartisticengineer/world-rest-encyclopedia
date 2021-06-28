@@ -63,20 +63,22 @@ function App() {
   };
 
   return (
-    <main>
-      <h1>World Encyclopedia</h1>
-      <SearchBar onChangeFcn={handleSearchChange} />
-      <ul>
-        {formatResults(search.results).map(({ countryName, alpha3Code }) => (
-          <li key={shortid.generate()}>
-            <SearchResult
-              countryName={countryName}
-              alpha3Code={alpha3Code}
-              fcn={() => handleClickedResult(alpha3Code)}
-            />
-          </li>
-        ))}
-      </ul>
+    <main className="container">
+      <header>
+        <h1>World Encyclopedia</h1>
+        <SearchBar onChangeFcn={handleSearchChange} />
+        <ul>
+          {formatResults(search.results).map(({ countryName, alpha3Code }) => (
+            <li key={shortid.generate()}>
+              <SearchResult
+                countryName={countryName}
+                alpha3Code={alpha3Code}
+                fcn={() => handleClickedResult(alpha3Code)}
+              />
+            </li>
+          ))}
+        </ul>
+      </header>
       {result.countryName ? (
         <CountryInfo
           countryName={result.countryName}
