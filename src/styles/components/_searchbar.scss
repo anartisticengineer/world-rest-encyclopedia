@@ -1,0 +1,8 @@
+@use '../global/colors' as *;
+@use '../global/fonts' as *;
+@use '../global/mixins' as *;
+
+.searchbar {
+  width: 20rem;
+  @include input-button-styling($gainsboro, $jet);
+}
