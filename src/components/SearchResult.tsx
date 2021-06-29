@@ -8,7 +8,7 @@ const SearchResult: FunctionComponent<SearchResultProps & OnClick> = ({
   fcn,
 }) => {
   return (
-    <button type="button" onClick={fcn}>
+    <button className="searchresult" type="button" onClick={fcn}>
       <span>{countryName} - </span>
       <span>{alpha3Code}</span>
     </button>

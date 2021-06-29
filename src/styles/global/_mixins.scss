@@ -1,0 +1,25 @@
+@use './fonts' as *;
+
+@mixin input-button-styling($bg-color, $txt-color) {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  @include opensans(1.5rem);
+  background-color: $bg-color;
+  color: $txt-color;
+}
+
+@mixin input-button-outline($hover-outline-color, $active-outline-color) {
+  &:hover {
+    outline: 0.1rem solid $hover-outline-color;
+  }
+  &:active {
+    outline: 0.1rem solid $active-outline-color;
+  }
+}
+
+@mixin text-center-in-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,5 +1,6 @@
 @use '../global/colors' as *;
 @use '../global/fonts' as *;
+@use '../global/mixins' as *;
 
 @mixin infostyling($areaname) {
   grid-area: $areaname;
@@ -25,7 +26,7 @@
 .countryinfo {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: 10rem auto auto;
   grid-template-areas: 'title title' 'flag info1' 'info2 info3';
   height: 100%;
   &__title {
@@ -35,6 +36,7 @@
     background-color: $jet;
     color: $gainsboro;
     margin: 0;
+    @include text-center-in-container;
   }
   &__figure {
     @include infostyling(flag);

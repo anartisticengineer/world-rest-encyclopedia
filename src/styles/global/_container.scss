@@ -3,7 +3,7 @@
 
 .container {
   height: 100vh;
-  overflow: clip scroll;
+  overflow: hidden scroll;
   header {
     position: sticky;
     top: 0;
@@ -20,6 +20,9 @@
   }
   ul {
     display: flex;
+    flex-flow: row nowrap;
+    overflow-x: scroll;
+    width: 100%;
     list-style: none;
   }
 }

@@ -1,0 +1,13 @@
+@use '../global/colors' as *;
+@use '../global/mixins' as *;
+
+.searchresult {
+  @include input-button-styling($aero, $eerie-black);
+  @include input-button-outline($gainsboro, $brink-pink);
+  white-space: nowrap;
+  margin: 0 0.5rem;
+  &:hover {
+    background-color: $carolina-blue;
+    cursor: pointer;
+  }
+}
