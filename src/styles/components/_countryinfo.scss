@@ -38,6 +38,9 @@
     margin: 0;
     @include text-center-in-container;
   }
+  &__cattitle {
+    @include padauk(2.2rem);
+  }
   &__figure {
     @include infostyling(flag);
     background-color: checkergrid();
@@ -56,5 +59,15 @@
   &__altnames {
     @include infostyling(info3);
     background-color: checkergrid();
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        &::before,
+        &::after {
+          content: ' - ';
+        }
+      }
+    }
   }
 }

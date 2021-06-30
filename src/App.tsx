@@ -64,7 +64,7 @@ function App() {
 
   return (
     <main className="container">
-      <header>
+      <header className="container__header">
         <h1>World Encyclopedia</h1>
         <SearchBar onChangeFcn={handleSearchChange} />
         <ul>

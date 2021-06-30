@@ -4,7 +4,7 @@
 .container {
   height: 100vh;
   overflow: hidden scroll;
-  header {
+  &__header {
     position: sticky;
     top: 0;
     z-index: 1;
@@ -13,16 +13,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  h1 {
-    @include padauk(3rem);
-    color: $gainsboro;
-  }
-  ul {
-    display: flex;
-    flex-flow: row nowrap;
-    overflow-x: scroll;
-    width: 100%;
-    list-style: none;
+    h1 {
+      @include padauk(3rem);
+      color: $gainsboro;
+    }
+    ul {
+      display: flex;
+      flex-flow: row nowrap;
+      overflow-x: scroll;
+      width: 90%;
+      margin-left: 0;
+      list-style: none;
+    }
   }
 }

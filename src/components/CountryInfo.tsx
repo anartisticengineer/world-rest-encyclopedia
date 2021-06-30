@@ -22,15 +22,18 @@ const CountryInfo: FunctionComponent<Description> = ({
         <figcaption>{description}</figcaption>
       </figure>
       <aside className="countryinfo__basic">
+        <h3 className="countryinfo__cattitle">Basic Info</h3>
         <div>{`Capital: ${capital}`}</div>
         <div>{`Population: ${population}`}</div>
         <div>{`Area: ${area}`}</div>
       </aside>
       <aside className="countryinfo__region">
+        <h3 className="countryinfo__cattitle">Region Info</h3>
         <div>{`Region: ${region}`}</div>
         <div>{`Subregion: ${subRegion}`}</div>
       </aside>
       <aside className="countryinfo__altnames">
+        <h3 className="countryinfo__cattitle">Alternate Names</h3>
         <ul>
           {alternateNames?.map((item) => (
             <li key={shortid.generate()}>{item}</li>
