@@ -1,5 +1,6 @@
 @use '../global/colors' as *;
 @use '../global/fonts' as *;
+@use '../global/mixins' as *;
 
 .container {
   height: 100vh;
@@ -25,5 +26,12 @@
       margin-left: 0;
       list-style: none;
     }
+  }
+  &__noresults {
+    margin: 0 0.5rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: $gainsboro;
+    @include text-center-in-container;
   }
 }

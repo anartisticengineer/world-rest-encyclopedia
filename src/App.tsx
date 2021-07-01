@@ -92,7 +92,7 @@ function App() {
             )}
           </ul>
         ) : (
-          <div>No Results!</div>
+          <div className="container__noresults">No Results!</div>
         )}
       </header>
       {result.countryName ? (
