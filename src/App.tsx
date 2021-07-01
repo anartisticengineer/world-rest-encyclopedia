@@ -25,15 +25,25 @@ function App() {
   };
 
   // States
-  const [search, updateSearch] = useState({ term: '', results: [] });
+  const [search, updateSearch] = useState({
+    term: '',
+    results: [],
+    noResults: false,
+  });
   const [result, updateResult] = useState(initialResult);
   const [resultIsLoading, updateResultIsLoading] = useState(false);
 
   useEffect(() => {
     if (search.term.length > 2) {
       getCountriesByTerm(search.term)
-        .then((data) => updateSearch({ ...search, results: data }))
-        .catch((err) => console.error(err));
+        .then((data) =>
+          updateSearch({
+            ...search,
+            results: data,
+            noResults: data.length === 0,
+          })
+        )
+        .catch((err) => alert(err));
     }
   }, [search.term]);
 
@@ -59,7 +69,7 @@ function App() {
           description: `Flag of ${country.name}`,
         });
       })
-      .catch((err) => console.error(err));
+      .catch((err) => alert(err));
   };
 
   return (
@@ -67,17 +77,23 @@ function App() {
       <header className="container__header">
         <h1>World Encyclopedia</h1>
         <SearchBar onChangeFcn={handleSearchChange} />
-        <ul>
-          {formatResults(search.results).map(({ countryName, alpha3Code }) => (
-            <li key={shortid.generate()}>
-              <SearchResult
-                countryName={countryName}
-                alpha3Code={alpha3Code}
-                fcn={() => handleClickedResult(alpha3Code)}
-              />
-            </li>
-          ))}
-        </ul>
+        {!search.noResults ? (
+          <ul>
+            {formatResults(search.results).map(
+              ({ countryName, alpha3Code }) => (
+                <li key={shortid.generate()}>
+                  <SearchResult
+                    countryName={countryName}
+                    alpha3Code={alpha3Code}
+                    fcn={() => handleClickedResult(alpha3Code)}
+                  />
+                </li>
+              )
+            )}
+          </ul>
+        ) : (
+          <div>No Results!</div>
+        )}
       </header>
       {result.countryName ? (
         <CountryInfo
