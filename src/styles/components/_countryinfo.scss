@@ -1,5 +1,6 @@
 @use '../global/colors' as *;
 @use '../global/fonts' as *;
+@use '../global/mediaqueries' as *;
 @use '../global/mixins' as *;
 
 @mixin infostyling($areaname) {
@@ -7,7 +8,7 @@
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: $gainsboro;
   * {
     text-align: center;
@@ -24,19 +25,33 @@
 }
 
 .countryinfo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 10rem auto auto;
-  grid-template-areas: 'title title' 'flag info1' 'info2 info3';
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  @include at-least(laptop) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 10rem auto auto;
+    grid-template-areas: 'title title' 'flag info1' 'info2 info3';
+  }
+  aside {
+    min-height: 220px;
+  }
+  div {
+    @include up-to(laptop) {
+      padding: 1rem 0;
+    }
+  }
   &__title {
     grid-area: title;
-    @include padauk(2.5rem);
     text-align: center;
     background-color: $jet;
     color: $gainsboro;
-    margin: 0;
+    @include padauk(2.5rem);
     @include text-center-in-container;
+    @include at-least(laptop) {
+      margin: 0;
+    }
   }
   &__cattitle {
     @include padauk(2.2rem);
@@ -50,15 +65,20 @@
   &__basic {
     @include infostyling(info1);
     background-color: checkergrid(true);
-    font-size: 2rem;
   }
   &__region {
+    background-color: checkergrid();
     @include infostyling(info2);
-    background-color: checkergrid(true);
+    @include at-least(laptop) {
+      background-color: checkergrid(true);
+    }
   }
   &__altnames {
+    background-color: checkergrid(true);
     @include infostyling(info3);
-    background-color: checkergrid();
+    @include at-least(laptop) {
+      background-color: checkergrid();
+    }
     ul {
       list-style: none;
       padding: 0;

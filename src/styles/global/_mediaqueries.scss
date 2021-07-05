@@ -1,0 +1,59 @@
+$q-phone: 425px;
+$q-tablet: 778px;
+$q-laptop: 1024px;
+
+@mixin mobile {
+  @media screen and (max-width: calc($q-phone - 1px)) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: $q-phone) and (max-width: calc($q-tablet - 1px)) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media screen and (min-width: $q-tablet) and (max-width: calc($q-tablet - 1px)) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $q-laptop) {
+    @content;
+  }
+}
+
+@mixin at-least($query) {
+  $px-size: 0;
+  @if $query == phone {
+    $px-size: $q-phone;
+  } @else if $query == tablet {
+    $px-size: $q-tablet;
+  } @else if $query == laptop {
+    $px-size: $q-laptop;
+  } @else {
+    @error "Unknown/Invalid query";
+  }
+  @media screen and (min-width: $px-size) {
+    @content;
+  }
+}
+
+@mixin up-to($query) {
+  $px-size: 0;
+  @if $query == phone {
+    $px-size: $q-phone;
+  } @else if $query == tablet {
+    $px-size: $q-tablet;
+  } @else if $query == laptop {
+    $px-size: $q-laptop;
+  } @else {
+    @error "Unknown/Invalid query";
+  }
+  @media screen and (max-width: $px-size) {
+    @content;
+  }
+}
