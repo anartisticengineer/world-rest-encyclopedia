@@ -1,0 +1,44 @@
+@use '../global/colors' as *;
+@use '../global/fonts' as *;
+@use '../global/mixins' as *;
+@use '../global/mediaqueries' as *;
+
+.footer {
+  @include opensans(2rem);
+  background-color: $eerie-black;
+  width: 100%;
+  padding: 0.5rem;
+  &__social {
+    color: $gainsboro;
+    width: 40%;
+    margin: 0 auto;
+    @include text-center-in-container;
+    @include up-to(laptop) {
+      text-align: center;
+      flex-direction: column;
+    }
+    @include at-least(laptop) {
+      justify-content: space-evenly;
+      width: 50%;
+    }
+
+    &__link > * {
+      color: $gainsboro;
+      padding: 0.5rem;
+      &:hover,
+      &:visited {
+        color: $brink-pink;
+      }
+    }
+    &__name {
+      @include padauk(2rem);
+      padding-left: 0.5rem;
+    }
+  }
+  &__copyright {
+    @include padauk(1.2rem);
+    padding: 1rem;
+    text-align: center;
+    color: $gainsboro;
+  }
+}

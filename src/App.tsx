@@ -4,6 +4,7 @@ import SearchBar from './components/SearchBar';
 import SearchResult from './components/SearchResult';
 import CountryInfo from './components/CountryInfo';
 import Loading from './components/Loading';
+import Footer from './components/Footer';
 import { getCountriesByTerm, getCountryByAlpha3Code } from './scripts/api';
 import { Description } from './types';
 import formatResults from './scripts/utility';
@@ -110,6 +111,7 @@ function App() {
         />
       ) : null}
       {resultIsLoading ? <Loading /> : null}
+      <Footer />
     </main>
   );
 }

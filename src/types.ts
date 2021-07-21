@@ -21,6 +21,12 @@ interface onClickFcn {
   fcn: () => any;
 }
 
+interface Social {
+  faName: String;
+  link: string;
+}
+
 export type Description = BasicDescription & Result & Flag;
 export type SearchResultProps = Result;
 export type OnClick = onClickFcn;
+export type SocialProps = Social;
