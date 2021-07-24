@@ -1,9 +1,16 @@
 @use '../global/colors' as *;
+@use '../global/mediaqueries' as *;
 @use '../global/mixins' as *;
 
 .searchresult {
   @include input-button-styling($aero, $eerie-black);
   @include input-button-outline($gainsboro, $brink-pink);
+  @include up-to(tablet) {
+    font-size: 1rem;
+    width: 100%;
+    outline: 1px solid $eerie-black;
+    margin: 0;
+  }
   white-space: nowrap;
   margin: 0 0.5rem;
   &:hover {

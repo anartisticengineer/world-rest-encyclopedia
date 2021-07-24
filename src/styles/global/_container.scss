@@ -22,10 +22,15 @@
     ul {
       display: flex;
       flex-flow: row nowrap;
+      justify-content: space-between;
       overflow-x: scroll;
+      padding-left: 0;
       width: 90%;
-      margin-left: 0;
       list-style: none;
+      @include up-to(tablet) {
+        flex-direction: column;
+        overflow-x: hidden;
+      }
     }
   }
   &__noresults {
